@@ -1,24 +1,24 @@
-import React, { useEffect } from "react";
-import { FlatList, Image, Text, TouchableOpacity, View } from "react-native";
-import { useDispatch, useSelector } from "react-redux";
+import React, { useEffect } from 'react'
+import { FlatList, Image, Text, TouchableOpacity, View } from 'react-native'
+import { useDispatch, useSelector } from 'react-redux'
 import {
   NavigationParams,
   NavigationScreenProp,
   NavigationState,
-} from "react-navigation";
-import { appInit } from "../state/actions";
-import * as Constants from "../constants/constants";
-import Styles from "../styles/Styles";
-import Spinner from "../components/Spinner";
+} from 'react-navigation'
+import { appInit } from '../state/actions'
+import * as Constants from '../constants/constants'
+import Styles from '../styles/Styles'
+import Spinner from '../components/Spinner'
 
 interface HomeScreenProps {
-  navigation: NavigationScreenProp<NavigationState, NavigationParams>;
+  navigation: NavigationScreenProp<NavigationState, NavigationParams>
 }
 
-const getArtists = (artists) => artists.map((artist) => artist.name).join(", ");
+const getArtists = (artists) => artists.map((artist) => artist.name).join(', ')
 
 const Item = ({ item, enterNotesScreen }) => {
-  const { id, images, name, artists } = item;
+  const { id, images, name, artists } = item
   return (
     <View style={Styles.listItem}>
       <Image source={{ uri: images[0].url }} style={Styles.itemImage} />
@@ -33,20 +33,20 @@ const Item = ({ item, enterNotesScreen }) => {
         <Text style={Styles.notesButtonText}>Notes</Text>
       </TouchableOpacity>
     </View>
-  );
-};
+  )
+}
 
 const HomeScreen: React.FC<HomeScreenProps> = (props) => {
-  const dispatch = useDispatch();
-  const app = useSelector((state) => state.app);
+  const dispatch = useDispatch()
+  const app = useSelector((state) => state.app)
 
   useEffect(() => {
-    dispatch(appInit());
-  }, []);
+    dispatch(appInit())
+  }, [])
 
   const enterNotesScreen = (id) => {
-    props.navigation.navigate(Constants.NOTES_SCREEN, { id });
-  };
+    props.navigation.navigate(Constants.NOTES_SCREEN, { id })
+  }
 
   return (
     <>
@@ -62,14 +62,14 @@ const HomeScreen: React.FC<HomeScreenProps> = (props) => {
         />
       </View>
     </>
-  );
-};
+  )
+}
 
 HomeScreen.navigationOptions = () => ({
-  title: "New Releases",
+  title: 'New Releases',
   headerStyle: Styles.headerStyle,
   headerTintColor: Styles.headerTintColor,
   headerTitleStyle: Styles.headerTitleStyle,
-});
+})
 
-export default HomeScreen;
+export default HomeScreen

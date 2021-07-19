@@ -1,63 +1,63 @@
-import React, { useState } from "react";
-import { TextInput, Text, TouchableOpacity, View, Alert } from "react-native";
-import { useSelector, useDispatch } from "react-redux";
+import React, { useState } from 'react'
+import { TextInput, Text, TouchableOpacity, View, Alert } from 'react-native'
+import { useSelector, useDispatch } from 'react-redux'
 import {
   NavigationParams,
   NavigationScreenProp,
   NavigationState,
-} from "react-navigation";
-import { submitNotes } from "../state/actions";
-import * as Constants from "../constants/constants";
-import Styles from "../styles/Styles";
-import Spinner from "../components/Spinner";
+} from 'react-navigation'
+import { submitNotes } from '../state/actions'
+import * as Constants from '../constants/constants'
+import Styles from '../styles/Styles'
+import Spinner from '../components/Spinner'
 
 interface FormScreenProps {
-  navigation: NavigationScreenProp<NavigationState, NavigationParams>;
+  navigation: NavigationScreenProp<NavigationState, NavigationParams>
 }
 
 const FormScreen: React.FC<FormScreenProps> = (props) => {
-  const [notes, setNotes] = useState("");
-  const dispatch = useDispatch();
-  const app = useSelector((state) => state.app);
+  const [notes, setNotes] = useState('')
+  const dispatch = useDispatch()
+  const app = useSelector((state) => state.app)
 
   const notesSubmitAlert = () => {
     Alert.alert(
-      "Notes Submitted",
-      "",
+      'Notes Submitted',
+      '',
       [
         {
-          text: "OK",
+          text: 'OK',
           onPress: () => {},
-          style: "cancel",
+          style: 'cancel',
         },
       ],
       { cancelable: false }
-    );
-  };
+    )
+  }
 
   const handleSubmit = () => {
-    const { id } = props.navigation.state.params;
+    const { id } = props.navigation.state.params
 
     if (!notes) {
       Alert.alert(
-        "Invalid Input",
-        "notes cannot be empty",
+        'Invalid Input',
+        'notes cannot be empty',
         [
           {
-            text: "OK",
+            text: 'OK',
             onPress: () => {},
-            style: "cancel",
+            style: 'cancel',
           },
         ],
         { cancelable: false }
-      );
-      return;
+      )
+      return
     }
 
-    dispatch(submitNotes({ notes, id }));
-    props.navigation.navigate(Constants.HOME_SCREEN);
-    notesSubmitAlert();
-  };
+    dispatch(submitNotes({ notes, id }))
+    props.navigation.navigate(Constants.HOME_SCREEN)
+    notesSubmitAlert()
+  }
 
   return (
     <>
@@ -80,14 +80,14 @@ const FormScreen: React.FC<FormScreenProps> = (props) => {
         </View>
       </View>
     </>
-  );
-};
+  )
+}
 
 FormScreen.navigationOptions = () => ({
-  title: "Notes",
+  title: 'Notes',
   headerStyle: Styles.headerStyle,
   headerTintColor: Styles.headerTintColor,
   headerTitleStyle: Styles.headerTitleStyle,
-});
+})
 
-export default FormScreen;
+export default FormScreen

@@ -45,7 +45,8 @@
     "no-async-promise-executor": "off",
     "no-constant-condition": "off",
     "react/display-name": "off",
-    "react/prop-types": "off"
+    "react/prop-types": "off",
+    "quotes": [2, "single", { "avoidEscape": true }]
   },
   "settings": {
     "react": {

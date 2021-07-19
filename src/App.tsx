@@ -1,11 +1,11 @@
-import React from "react";
-import { SafeAreaView } from "react-native";
-import { Provider } from "react-redux";
-import AppNavigator from "./routes/AppNavigator";
-import configureStore from "./state/create_store";
-import Styles from "./styles/Styles";
+import React from 'react'
+import { SafeAreaView } from 'react-native'
+import { Provider } from 'react-redux'
+import AppNavigator from './routes/AppNavigator'
+import configureStore from './state/create_store'
+import Styles from './styles/Styles'
 
-const store = configureStore();
+const store = configureStore()
 
 const App: React.FC = () => (
   <Provider store={store}>
@@ -13,6 +13,6 @@ const App: React.FC = () => (
       <AppNavigator />
     </SafeAreaView>
   </Provider>
-);
+)
 
-export default App;
+export default App
