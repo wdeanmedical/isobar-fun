@@ -2,7 +2,7 @@ import { Alert } from 'react-native'
 import { APP_INIT, SUBMIT_NOTES, TOGGLE_PENDING_SCREEN } from './action_types'
 
 const INITIAL_STATE = {
-  albums: [],
+  states: [],
   pendingScreen: false,
   submitNotesResponse: {},
   fetchError: false,
@@ -23,12 +23,12 @@ const errorAlert = () => {
   )
 }
 
-export default function(state = INITIAL_STATE, action) {
+export default function (state = INITIAL_STATE, action) {
   switch (action.type) {
     case APP_INIT.SUCCESS:
       return {
         ...state,
-        albums: action.payload,
+        states: action.payload,
       }
     case APP_INIT.ERROR:
       errorAlert()

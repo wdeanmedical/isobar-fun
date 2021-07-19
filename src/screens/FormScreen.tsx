@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { TextInput, Text, TouchableOpacity, View, Alert } from 'react-native'
+import { Image, Text, View, Alert } from 'react-native'
 import { useSelector, useDispatch } from 'react-redux'
 import {
   NavigationParams,
@@ -19,6 +19,7 @@ const FormScreen: React.FC<FormScreenProps> = (props) => {
   const [notes, setNotes] = useState('')
   const dispatch = useDispatch()
   const app = useSelector((state) => state.app)
+  const { item } = props.navigation?.state.params
 
   const notesSubmitAlert = () => {
     Alert.alert(
@@ -62,21 +63,37 @@ const FormScreen: React.FC<FormScreenProps> = (props) => {
   return (
     <>
       <Spinner visible={app.pendingScreen} />
-      <View style={Styles.container}>
+      <View style={Styles.stateDetailContainer}>
         <View style={Styles.notesForm}>
-          <TextInput
-            onChangeText={(text) => setNotes(text)}
-            editable
-            multiline
-            maxLength={250}
-            style={Styles.notesTextInput}
-          />
-          <TouchableOpacity
-            style={Styles.notesSubmitButton}
-            onPress={() => handleSubmit()}
-          >
-            <Text style={Styles.notesSubmitButtonText}>Submit</Text>
-          </TouchableOpacity>
+          <View style={Styles.stateTitleHeader}>
+            <Text style={Styles.stateTitleText}>{item.name}</Text>
+            <Image
+              source={{
+                uri:
+                  'https://www.50states.com/no/0' +
+                  item.abbreviation.toLowerCase() +
+                  'f.gif',
+              }}
+              style={Styles.itemImage}
+            />
+          </View>
+          <Text style={Styles.stateText}>
+            Abbreviation: {item.abbreviation}
+          </Text>
+          <Text style={Styles.stateText}>Captital: {item.capital}</Text>
+          <Text style={Styles.stateText}>
+            Most Populous City: {item['most-populous-city']}
+          </Text>
+          <Text style={Styles.stateText}>Population: {item.population}</Text>
+          <Text style={Styles.stateText}>
+            Square Miles: {item['square-miles']}
+          </Text>
+          <Text style={Styles.stateText}>
+            Time Zone 1: {item['time-zone-1']}
+          </Text>
+          <Text style={Styles.stateText}>
+            Time Zone 2: {item['time-zone-2']}
+          </Text>
         </View>
       </View>
     </>
@@ -84,7 +101,7 @@ const FormScreen: React.FC<FormScreenProps> = (props) => {
 }
 
 FormScreen.navigationOptions = () => ({
-  title: 'Notes',
+  title: 'State Detail',
   headerStyle: Styles.headerStyle,
   headerTintColor: Styles.headerTintColor,
   headerTitleStyle: Styles.headerTitleStyle,

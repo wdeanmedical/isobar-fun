@@ -10,6 +10,21 @@ export default {
     backgroundColor: Colors.charcoalGrey,
     paddingTop: 20,
   },
+  gameDetailContainer: {
+    flex: 1,
+    backgroundColor: Colors.charcoalGrey,
+    paddingTop: 50,
+    width: '100%',
+    paddingLeft: 30,
+    paddingRight: 30,
+  },
+  stateDetailContainer: {
+    flex: 1,
+    backgroundColor: Colors.charcoalGrey,
+    paddingTop: 50,
+    width: '100%',
+    paddingLeft: 50,
+  },
   listItem: {
     margin: 2,
     padding: 5,
@@ -31,7 +46,7 @@ export default {
     paddingBottom: 30,
   },
   itemImage: {
-    height: 100,
+    height: 50,
     width: 100,
   },
   itemText: {
@@ -44,6 +59,38 @@ export default {
     fontWeight: 'bold',
     marginBottom: 5,
     color: Colors.charcoalGrey,
+  },
+  responseText: {
+    fontSize: 18,
+    fontWeight: 'bold',
+    marginTop: 10,
+    marginBottom: 10,
+    color: Colors.white,
+    alignSelf: 'center',
+  },
+  stateText: {
+    fontSize: 14,
+    fontWeight: 'bold',
+    marginBottom: 5,
+    color: Colors.white,
+  },
+  stateTitleText: {
+    fontSize: 20,
+    fontWeight: 'bold',
+    marginBottom: 10,
+    marginRight: 20,
+    color: Colors.white,
+  },
+  gameTitleText: {
+    fontSize: 18,
+    fontWeight: 'bold',
+    marginBottom: 10,
+    color: Colors.white,
+    alignSelf: 'center',
+  },
+  stateTitleHeader: {
+    flexDirection: 'row',
+    marginBottom: 30,
   },
   artistName: {
     color: Colors.charcoalGrey,
@@ -81,6 +128,15 @@ export default {
     alignItems: 'center',
   },
   notesSubmitButtonText: {
+    color: Colors.white,
+    fontSize: 24,
+  },
+  gameSubmitButton: {
+    height: 50,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  gameSubmitButtonText: {
     color: Colors.white,
     fontSize: 24,
   },

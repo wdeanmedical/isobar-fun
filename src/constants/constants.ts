@@ -16,4 +16,5 @@ export const IOS = 'ios'
 export const ANDROID = 'android'
 
 export const HOME_SCREEN = 'home'
+export const GAME_SCREEN = 'game'
 export const NOTES_SCREEN = 'notes'

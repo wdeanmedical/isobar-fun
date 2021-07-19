@@ -15,24 +15,15 @@ interface HomeScreenProps {
   navigation: NavigationScreenProp<NavigationState, NavigationParams>
 }
 
-const getArtists = (artists) => artists.map((artist) => artist.name).join(', ')
-
 const Item = ({ item, enterNotesScreen }) => {
-  const { id, images, name, artists } = item
   return (
-    <View style={Styles.listItem}>
-      <Image source={{ uri: images[0].url }} style={Styles.itemImage} />
-      <View style={Styles.itemText}>
-        <Text style={Styles.albumName}>{name}</Text>
-        <Text style={Styles.artistName}>{getArtists(artists)}</Text>
+    <TouchableOpacity onPress={() => enterNotesScreen(item)}>
+      <View style={Styles.listItem}>
+        <View style={Styles.itemText}>
+          <Text style={Styles.albumName}>{item['@attributes'].name}</Text>
+        </View>
       </View>
-      <TouchableOpacity
-        style={Styles.notesButton}
-        onPress={() => enterNotesScreen(id)}
-      >
-        <Text style={Styles.notesButtonText}>Notes</Text>
-      </TouchableOpacity>
-    </View>
+    </TouchableOpacity>
   )
 }
 
@@ -44,21 +35,25 @@ const HomeScreen: React.FC<HomeScreenProps> = (props) => {
     dispatch(appInit())
   }, [])
 
-  const enterNotesScreen = (id) => {
-    props.navigation.navigate(Constants.NOTES_SCREEN, { id })
+  const enterNotesScreen = (item) => {
+    console.log('ITEM', item)
+    props.navigation.navigate(Constants.NOTES_SCREEN, { item })
   }
 
   return (
     <>
-      <Spinner visible={app.pendingScreen} title="Loading Albums..." />
+      <Spinner visible={app.pendingScreen} title="Loading States..." />
       <View style={Styles.container}>
         <FlatList
           style={Styles.itemsList}
-          data={app.albums}
+          data={app.states?.statesInfo?.states}
           renderItem={({ item }) => (
-            <Item item={item} enterNotesScreen={(id) => enterNotesScreen(id)} />
+            <Item
+              item={item}
+              enterNotesScreen={(item) => enterNotesScreen(item['@attributes'])}
+            />
           )}
-          keyExtractor={(item) => item.id}
+          keyExtractor={(item) => item['@attributes'].abbreviation}
         />
       </View>
     </>
@@ -66,7 +61,7 @@ const HomeScreen: React.FC<HomeScreenProps> = (props) => {
 }
 
 HomeScreen.navigationOptions = () => ({
-  title: 'New Releases',
+  title: 'States',
   headerStyle: Styles.headerStyle,
   headerTintColor: Styles.headerTintColor,
   headerTitleStyle: Styles.headerTitleStyle,
