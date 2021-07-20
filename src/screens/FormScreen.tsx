@@ -21,45 +21,6 @@ const FormScreen: React.FC<FormScreenProps> = (props) => {
   const app = useSelector((state) => state.app)
   const { item } = props.navigation?.state.params
 
-  const notesSubmitAlert = () => {
-    Alert.alert(
-      'Notes Submitted',
-      '',
-      [
-        {
-          text: 'OK',
-          onPress: () => {},
-          style: 'cancel',
-        },
-      ],
-      { cancelable: false }
-    )
-  }
-
-  const handleSubmit = () => {
-    const { id } = props.navigation.state.params
-
-    if (!notes) {
-      Alert.alert(
-        'Invalid Input',
-        'notes cannot be empty',
-        [
-          {
-            text: 'OK',
-            onPress: () => {},
-            style: 'cancel',
-          },
-        ],
-        { cancelable: false }
-      )
-      return
-    }
-
-    dispatch(submitNotes({ notes, id }))
-    props.navigation.navigate(Constants.HOME_SCREEN)
-    notesSubmitAlert()
-  }
-
   return (
     <>
       <Spinner visible={app.pendingScreen} />

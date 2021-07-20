@@ -36,7 +36,6 @@ const HomeScreen: React.FC<HomeScreenProps> = (props) => {
   }, [])
 
   const enterNotesScreen = (item) => {
-    console.log('ITEM', item)
     props.navigation.navigate(Constants.NOTES_SCREEN, { item })
   }
 

@@ -45,8 +45,8 @@ const GameScreen: React.FC<GameScreenProps> = (props) => {
     const guess = values[0]?.value
     setPizzas(values)
     if (guess === answer) {
-      setResponse('You Guessed IT!')
-      setGuessesText(`In only ${numGuesses} guesses`)
+      setResponse('You Guessed It!')
+      setGuessesText(`... in only ${numGuesses} guesses`)
       setVictory(true)
     } else {
       setResponse(`Too ${guess > answer ? 'High' : 'Low'}!`)
